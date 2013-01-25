@@ -16,7 +16,7 @@ class DailymotionService():
         self.localization = localization
         self.family_filter = family_filter
 
-    def get_params(self, fields=None):
+    def get_params(self, fields=None, page=None, limit=None):
         data = {}
         if fields is not None:
             data['fields'] = ",".join(fields)
@@ -27,60 +27,66 @@ class DailymotionService():
         if self.family_filter is not None:
             data['family_filter'] = self.family_filter
 
+        if page is not None:
+            data['page'] = page
+
+        if limit is not None:
+            data['limit'] = limit
+
         return data or None
 
-    def get(self, item, item_id, fields=None):
+    def get(self, item, item_id, fields=None, page=None, limit=None):
         url = "/".join([self.api_url, item, item_id])
         request = geelweb.dailymotion.request.Request(url)
-        return request.get(self.get_params(fields))
+        return request.get(self.get_params(fields, page, limit))
 
-    def get_connection(self, item, item_id, connection, fields=None):
+    def get_connection(self, item, item_id, connection, fields=None, page=None, limit=None):
         url = "/".join([self.api_url, item, item_id, connection])
         request = geelweb.dailymotion.request.Request(url)
-        return request.get(self.get_params(fields))
+        return request.get(self.get_params(fields, page, limit))
 
-    def get_contest(self, contest, fields):
-        return self.get('contest', contest, fields)
+    def get_contest(self, contest, fields=None, page=None, limit=None):
+        return self.get('contest', contest, fields, page, limit)
 
-    def get_contest_connection(self, contest, connection, fields=None):
-        return self.get_connection('contest', contest, connection, fields)
+    def get_contest_connection(self, contest, connection, fields=None, page=None, limit=None):
+        return self.get_connection('contest', contest, connection, fields, page, limit)
 
-    def get_subtitle(self, subtitle, fields=None):
-        return self.get('subtitle', subtitle, fields)
+    def get_subtitle(self, subtitle, fields=None, page=None, limit=None):
+        return self.get('subtitle', subtitle, fields, page, limit)
 
-    def get_group(self, group, fields=None):
-        return self.get('group', group, fields)
+    def get_group(self, group, fields=None, page=None, limit=None):
+        return self.get('group', group, fields, page, limit)
 
-    def get_group_connection(self, group, connection, fields=None):
-        return self.get_connection('group', group, connection, fields)
+    def get_group_connection(self, group, connection, fields=None, page=None, limit=None):
+        return self.get_connection('group', group, connection, fields, page, limit)
 
-    def get_activity(self, activity, fields=None):
-        return self.get('activity', activity, fields)
+    def get_activity(self, activity, fields=None, page=None, limit=None):
+        return self.get('activity', activity, fields, page, limit)
 
-    def get_channel(self, channel, fields=None):
-        return self.get('channel', channel, fields)
+    def get_channel(self, channel, fields=None, page=None, limit=None):
+        return self.get('channel', channel, fields, page, limit)
 
-    def get_channel_connection(self, channel, connection, fields=None):
-        return self.get_connection('channel', channel, connection, fields)
+    def get_channel_connection(self, channel, connection, fields=None, page=None, limit=None):
+        return self.get_connection('channel', channel, connection, fields, page, limit)
 
-    def get_user(self, username, fields=None):
-        return self.get('user', username, fields)
+    def get_user(self, username, fields=None, page=None, limit=None):
+        return self.get('user', username, fields, page, limit)
 
-    def get_user_connection(self, username, connection, fields=None):
-        return self.get_connection('user', username, connection, fields)
+    def get_user_connection(self, username, connection, fields=None, page=None, limit=None):
+        return self.get_connection('user', username, connection, fields, page, limit)
 
-    def get_playlist(self, playlist, fields=None):
-        return self.get('playlist', playlist, fields)
+    def get_playlist(self, playlist, fields=None, page=None, limit=None):
+        return self.get('playlist', playlist, fields, page, limit)
 
-    def get_playlist_connection(self, playlist, connection, fields=None):
-        return self.get_connection('playlist', playlist, connection, fields)
+    def get_playlist_connection(self, playlist, connection, fields=None, page=None, limit=None):
+        return self.get_connection('playlist', playlist, connection, fields, page, limit)
 
-    def get_comment(self, comment, fields=None):
-        return self.get('comment', comment, fields)
+    def get_comment(self, comment, fields=None, page=None, limit=None):
+        return self.get('comment', comment, fields, page, limit)
 
-    def get_video(self, video, fields=None):
-        return self.get('video', video, fields)
+    def get_video(self, video, fields=None, page=None, limit=None):
+        return self.get('video', video, fields, page, limit)
 
-    def get_video_conection(self, video, connection, fields=None):
-        return self.get('video', video, connection, fields)
+    def get_video_conection(self, video, connection, fields=None, page=None, limit=None):
+        return self.get('video', video, connection, fields, page, limit)
 
