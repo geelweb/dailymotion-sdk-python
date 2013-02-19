@@ -7,6 +7,12 @@ This repository contains a *unofficial* SDK that allows to access the
 
     sudo python setup.py install
 
+## Dependencies
+
+ * httplib2 0.7.7
+ * urllib
+ * json
+
 ## Usage
 
     import geelweb.dailymotion.service
