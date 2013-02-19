@@ -22,7 +22,7 @@ class Request():
             params = urllib.urlencode(data)
             url = "%s?%s" % (self.url, params)
 
-        h = httplib2.Http()
+        h = httplib2.Http(disable_ssl_certificate_validation=True)
         resp, content = h.request(url, method="GET")
         if resp.status == 200:
             return json.loads(content)
